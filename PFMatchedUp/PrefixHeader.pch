@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  PFMatchedUp
+//
+//  Created by Da-Tou on 1/12/16.
+//  Copyright © 2016 Da-Tou. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "PFConstants.h"
+#import <Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
+#endif /* PrefixHeader_pch */

@@ -7,13 +7,12 @@
 //
 
 #import "PFLoginViewController.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
 
 @interface PFLoginViewController ()
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *ActivityIndicator;
+@property (nonatomic, strong) NSMutableData *imageData;
 
 @end
 
@@ -23,6 +22,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.ActivityIndicator.hidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [self updateUserInformation];
+        [self performSegueWithIdentifier:@"loginToTabBarSegue" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,11 +79,116 @@
             }
         }
         else {
+            [self updateUserInformation];
             [self performSegueWithIdentifier:@"loginToTabBarSegue" sender:self];
         }
     }];
-    
-    
 }
 
+#pragma mark - Helper method
+
+
+- (void)updateUserInformation
+{
+    if ([FBSDKAccessToken currentAccessToken]) {
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"name,first_name,gender,birthday,location"}]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+             if (!error) {
+                 NSDictionary *userDictionary = (NSDictionary *)result;
+                 
+                 //Create URL
+                 NSString *facebookID = userDictionary[@"id"];
+                 NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+                 
+                 NSLog(@"%@",userDictionary);
+                 
+                 NSMutableDictionary *userProfile = [[NSMutableDictionary alloc] initWithCapacity:7];
+                 
+                 if (userDictionary[@"name"]) {
+                     userProfile[PFUserProfileNameKey] = userDictionary[@"name"];
+                 }
+                 if (userDictionary[@"first_name"]) {
+                     userProfile[PFUserProfileFirstNameKey] = userDictionary[@"first_name"];
+                 }
+                 if (userDictionary[@"location"][@"name"]) {
+                     userProfile[PFUserProfileLocationKey] = userDictionary[@"location"][@"name"];
+                 }
+                 if (userDictionary[@"gender"]) {
+                     userProfile[PFUserProfileGenderKey] = userDictionary[@"gender"];
+                 }
+                 if (userDictionary[@"birthday"]) {
+                     userProfile[PFUserProfileBirthdayKey] = userDictionary[@"birthday"];
+                 }
+                 if ([pictureURL absoluteString]) {
+                     userProfile[PFUserProfilePictureURL] = [pictureURL absoluteString];
+                 }
+                 
+                 [[PFUser currentUser] setObject:userProfile forKey:PFUserProfileKey];
+                 [[PFUser currentUser] saveInBackground];
+                 
+                 [self requestImage];
+             }
+             else {
+                 NSLog(@"Error in Facebook Request %@", error);
+             }
+             
+         }];
+    }
+}
+
+- (void)uploadPFFileToParse:(UIImage *)image
+{
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
+    
+    if (!imageData) {
+        NSLog(@"imageData was not found");
+        return;
+    }
+    
+    PFFile *photoFile = [PFFile fileWithData:imageData];
+    
+    [photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            PFObject *photo = [PFObject objectWithClassName:PFPhotoClassKey];
+            [photo setObject:[PFUser currentUser] forKey:PFPhotoUserKey];
+            [photo setObject:photoFile forKey:PFPhotoPictureKey];
+            [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                NSLog(@"Photo save successfully");
+            }];
+        }
+    }];
+}
+
+- (void)requestImage
+{
+    PFQuery *query = [PFQuery queryWithClassName:PFPhotoClassKey];
+    [query whereKey:PFPhotoUserKey equalTo:[PFUser currentUser]];
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+        if (number == 0) {
+            PFUser *user = [PFUser currentUser];
+            
+            self.imageData = [[NSMutableData alloc] init];
+            
+            NSURL *profilePictureURL = [NSURL URLWithString:user[PFUserProfileKey][PFUserProfilePictureURL]];
+            
+            NSURLSession *session = [NSURLSession sharedSession];
+            
+            NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:profilePictureURL completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                UIImage *downloadedImage = nil;
+                if (!error) {
+                    downloadedImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                } else {
+                    NSLog(@"downloadTaskWithRequest failed: %@", error);
+                    return;
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    UIImage *profileImage = downloadedImage;
+                    [self uploadPFFileToParse:profileImage];
+                });
+            }];
+            [downloadTask resume];
+        }
+    }];
+}
 @end
