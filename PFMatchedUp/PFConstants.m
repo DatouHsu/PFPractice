@@ -20,6 +20,9 @@ NSString *const PFUserProfileLocationKey = @"location";
 NSString *const PFUserProfileGenderKey = @"gender";
 NSString *const PFUserProfileBirthdayKey = @"birthday";
 NSString *const PFUserProfilePictureURL = @"pictureURL";
+NSString *const PFUserProfileRelationshipStatusKey = @"releationshipStatus";
+NSString *const PFCUserProfileAgeKey = @"age";
+
 
 #pragma mark - Photo class
 

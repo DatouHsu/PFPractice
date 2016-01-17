@@ -19,6 +19,8 @@ extern NSString *const PFUserProfileLocationKey;
 extern NSString *const PFUserProfileGenderKey;
 extern NSString *const PFUserProfileBirthdayKey;
 extern NSString *const PFUserProfilePictureURL;
+extern NSString *const PFUserProfileRelationshipStatusKey;
+extern NSString *const PFCUserProfileAgeKey;
 
 #pragma mark - Photo class
 
