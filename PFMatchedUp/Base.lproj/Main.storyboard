@@ -34,7 +34,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="ActivityIndicator" destination="mIg-At-DXb" id="YUj-18-Ei2"/>
-                        <segue destination="qcG-6d-6ps" kind="show" identifier="loginToHomeSegue" id="ZEQ-ax-3E4"/>
+                        <segue destination="5Mc-ZK-JNl" kind="show" identifier="loginToHomeSegue" id="ZEQ-ax-3E4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s6a-8S-acR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -53,24 +53,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WG-aa-CoH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="3dO-k8-4Ir">
-                                        <barButtonItem key="leftBarButtonItem" title="Chat" id="1wq-S5-9h2">
-                                            <connections>
-                                                <action selector="chatBarButtonPressed:" destination="qcG-6d-6ps" id="N9b-h6-6U9"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Settings" id="zyY-Vq-Ay0">
-                                            <connections>
-                                                <action selector="settingsBarButtonPressed:" destination="qcG-6d-6ps" id="qlR-Lp-Zg7"/>
-                                                <segue destination="zNl-p3-l8d" kind="show" id="C5p-Uk-he8"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZZW-cK-dKO">
                                 <rect key="frame" x="47" y="109" width="280" height="280"/>
                             </imageView>
@@ -96,8 +78,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyY-if-Zge">
-                                <rect key="frame" x="326" y="412" width="29" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyY-if-Zge">
+                                <rect key="frame" x="260" y="412" width="95" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -120,6 +102,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="eU3-Pt-uCc">
+                        <barButtonItem key="leftBarButtonItem" title="Chat" id="1wq-S5-9h2">
+                            <connections>
+                                <action selector="chatBarButtonPressed:" destination="qcG-6d-6ps" id="N9b-h6-6U9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="zyY-Vq-Ay0">
+                            <connections>
+                                <action selector="settingsBarButtonPressed:" destination="qcG-6d-6ps" id="qlR-Lp-Zg7"/>
+                                <segue destination="zNl-p3-l8d" kind="show" id="C5p-Uk-he8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -137,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyB-As-2ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075.5" y="3.5"/>
+            <point key="canvasLocation" x="1662.5" y="3.5"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="VwU-le-jj7">
@@ -154,7 +149,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K4M-SG-H7l">
                                 <rect key="frame" x="47" y="124" width="280" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -191,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PWk-O1-Sbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2099.5" y="-709.5"/>
+            <point key="canvasLocation" x="2686.5" y="-709.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="b5O-z0-W6j">
@@ -254,7 +249,7 @@
                                 <rect key="frame" x="306" y="325" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaD-jS-9s1">
-                                <rect key="frame" x="20" y="617" width="80" height="30"/>
+                                <rect key="frame" x="15" y="585" width="80" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -265,7 +260,7 @@
                                 <rect key="frame" x="306" y="221" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcf-lk-CBx">
-                                <rect key="frame" x="275" y="617" width="80" height="30"/>
+                                <rect key="frame" x="275" y="585" width="80" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Edit Profile"/>
                                 <connections>
@@ -288,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZK-on-CEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1669.5" y="-709.5"/>
+            <point key="canvasLocation" x="2256.5" y="-709.5"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="KnI-Zu-SBC">
@@ -367,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9S-gG-mwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1669.5" y="3.5"/>
+            <point key="canvasLocation" x="2256.5" y="3.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wyr-EN-Sf0">
@@ -387,6 +382,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nsb-Il-FCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="91.5" y="3.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Z3D-F2-HWH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Mc-ZK-JNl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fK4-1u-85F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qcG-6d-6ps" kind="relationship" relationship="rootViewController" id="mkP-aO-iTI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ttk-Gs-IFI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1075.5" y="3.5"/>
         </scene>
     </scenes>
 </document>

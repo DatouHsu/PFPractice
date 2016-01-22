@@ -100,7 +100,7 @@
                  NSString *facebookID = userDictionary[@"id"];
                  NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
                  
-                 NSLog(@"%@",userDictionary);
+                 //NSLog(@"%@",userDictionary);
                  
                  NSMutableDictionary *userProfile = [[NSMutableDictionary alloc] initWithCapacity:7];
                  
@@ -126,7 +126,8 @@
                      NSTimeInterval seconds = [now timeIntervalSinceDate:date];
                                      
                      int age = seconds / 31536000;
-                                     userProfile[PFUserProfileKey] = @(age);
+                     userProfile[PFUserProfileAgeKey] = @(age);
+                     //NSLog(@"%i", age);
                  }
                  if (userDictionary[@"relationship_status"]) {
                      userProfile[PFUserProfileRelationshipStatusKey] = userDictionary[@"relationship_status"];

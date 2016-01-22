@@ -12,6 +12,8 @@
 
 #pragma mark - User Class
 
+NSString *const PFUserTagLineKey = @"tagLine";
+
 NSString *const PFUserProfileKey = @"profile";
 
 NSString *const PFUserProfileNameKey = @"name";
@@ -21,7 +23,7 @@ NSString *const PFUserProfileGenderKey = @"gender";
 NSString *const PFUserProfileBirthdayKey = @"birthday";
 NSString *const PFUserProfilePictureURL = @"pictureURL";
 NSString *const PFUserProfileRelationshipStatusKey = @"releationshipStatus";
-NSString *const PFCUserProfileAgeKey = @"age";
+NSString *const PFUserProfileAgeKey = @"age";
 
 
 #pragma mark - Photo class
@@ -29,5 +31,15 @@ NSString *const PFCUserProfileAgeKey = @"age";
 NSString *const PFPhotoClassKey = @"Photo";
 NSString *const PFPhotoUserKey = @"user";
 NSString *const PFPhotoPictureKey = @"image";
+
+#pragma - mark Activity class
+
+NSString *const PFActivityClassKey = @"Activity";
+NSString *const PFActivityTypeKey = @"type";
+NSString *const PFActivityFromUserKey = @"fromUser";
+NSString *const PFActivityToUserKey = @"toUser";
+NSString *const PFActivityPhotoKey = @"photo";
+NSString *const PFActivityTypeLikeKey = @"like";
+NSString *const PFActivityTypeDislikeKey = @"dislike";
 
 @end
