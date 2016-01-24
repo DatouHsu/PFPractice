@@ -40,4 +40,11 @@ extern NSString *const PFActivityPhotoKey;
 extern NSString *const PFActivityTypeLikeKey;
 extern NSString *const PFActivityTypeDislikeKey;
 
+#pragma mark - Settings
+
+extern NSString *const PFMenEnabledKey;
+extern NSString *const PFWomenEnabledKey;
+extern NSString *const PFSingleEnabledKey;
+extern NSString *const PFAgeMaxKey;
+
 @end

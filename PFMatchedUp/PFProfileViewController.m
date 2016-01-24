@@ -11,13 +11,9 @@
 @interface PFProfileViewController ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *profilePictureImageView;
-
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
-
 @property (strong, nonatomic) IBOutlet UILabel *ageLabel;
-
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
-
 @property (strong, nonatomic) IBOutlet UILabel *tagLineLabel;
 
 @end
@@ -27,6 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    PFFile *pictureFile = self.photo[PFPhotoPictureKey];
+    [pictureFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        self.profilePictureImageView.image = [UIImage imageWithData:data];
+    }];
+    
+    PFUser *user = self.photo[PFPhotoUserKey];
+    self.locationLabel.text = user[PFUserProfileKey][PFUserProfileLocationKey];
+    self.ageLabel.text = [NSString stringWithFormat:@"%@", user[PFUserProfileKey][PFUserProfileAgeKey]];
+    self.statusLabel.text = user[PFUserProfileKey][PFUserProfileRelationshipStatusKey];
+    self.tagLineLabel.text = user[PFUserTagLineKey];
 }
 
 - (void)didReceiveMemoryWarning {

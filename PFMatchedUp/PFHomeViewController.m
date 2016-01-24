@@ -7,6 +7,8 @@
 //
 
 #import "PFHomeViewController.h"
+#import "PFTestUser.h"
+#import "PFProfileViewController.h"
 
 @interface PFHomeViewController ()
 
@@ -36,11 +38,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [PFTestUser saveTestUserToParse];
+    
     self.likeButton.enabled = NO;
     self.infoButton.enabled = NO;
     self.dislikeButton.enabled = NO;
     
     PFQuery *query = [PFQuery queryWithClassName:PFPhotoClassKey];
+    //底下這行會只顯示非自己的使用者.
+    [query whereKey:PFPhotoUserKey notEqualTo:[PFUser currentUser]];
+    
     [query includeKey:PFPhotoUserKey];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
@@ -57,15 +64,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"homeToProfileSegue"]) {
+        PFProfileViewController *profileVC = segue.destinationViewController;
+        profileVC.photo = self.photo;
+    }
 }
-*/
 
 #pragma mark - IBActions
 
@@ -74,6 +84,7 @@
 }
 
 - (IBAction)infoButtonPressed:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"homeToProfileSegue" sender:nil];
 }
 
 - (IBAction)dislikeButtonPressed:(UIButton *)sender {
@@ -141,6 +152,7 @@
             }
             self.likeButton.enabled = YES;
             self.dislikeButton.enabled = YES;
+            self.infoButton.enabled = YES;
         }
     }];
                                     

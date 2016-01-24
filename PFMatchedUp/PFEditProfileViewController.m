@@ -7,6 +7,7 @@
 //
 
 #import "PFEditProfileViewController.h"
+#import "PFSettingsViewController.h"
 
 @interface PFEditProfileViewController ()
 
@@ -22,6 +23,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    PFQuery *query = [PFQuery queryWithClassName:PFPhotoClassKey];
+    [query whereKey:PFPhotoUserKey equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if ([objects count] > 0) {
+            PFObject *photo = objects[0];
+            PFFile *pictureFile = photo[PFPhotoPictureKey];
+            [pictureFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+                self.profilePictureImageView.image = [UIImage imageWithData:data];
+            }];
+        }
+    }];
+    self.tagLineTextView.text = [[PFUser currentUser] objectForKey:PFUserTagLineKey];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +56,10 @@
 #pragma mark - IBActions
 
 - (IBAction)saveBarButtomItemPressed:(UIBarButtonItem *)sender {
+    [[PFUser currentUser] setObject:self.tagLineTextView.text forKey:PFUserTagLineKey];
+    [[PFUser currentUser] saveInBackground];
+    //NSLog(@"%@", self.navigationController.viewControllers);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

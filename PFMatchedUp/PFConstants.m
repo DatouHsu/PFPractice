@@ -42,4 +42,11 @@ NSString *const PFActivityPhotoKey = @"photo";
 NSString *const PFActivityTypeLikeKey = @"like";
 NSString *const PFActivityTypeDislikeKey = @"dislike";
 
+#pragma mark - Settings
+
+NSString *const PFMenEnabledKey = @"men";
+NSString *const PFWomenEnabledKey = @"women";
+NSString *const PFSingleEnabledKey = @"single";
+NSString *const PFAgeMaxKey = @"ageMax";
+
 @end
