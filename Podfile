@@ -5,3 +5,4 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'ParseFacebookUtilsV4', "~> 1.8.5"
+pod 'JSQMessagesViewController'

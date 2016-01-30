@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3E26FC221C53FF2600B56A91 /* PFTestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26FC211C53FF2600B56A91 /* PFTestUser.m */; };
 		3E26FC241C54081700B56A91 /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E26FC231C54081700B56A91 /* test1.jpg */; };
+		3E26FC281C57C9CC00B56A91 /* PFMatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26FC271C57C9CC00B56A91 /* PFMatchViewController.m */; };
+		3E26FC2B1C57CE7D00B56A91 /* PFMatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26FC2A1C57CE7D00B56A91 /* PFMatchesViewController.m */; };
+		3E26FC2E1C57E00400B56A91 /* PFChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26FC2D1C57E00400B56A91 /* PFChatViewController.m */; };
 		3EE114341C413478008ACE67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE114331C413478008ACE67 /* main.m */; };
 		3EE114371C413478008ACE67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE114361C413478008ACE67 /* AppDelegate.m */; };
 		3EE114401C413479008ACE67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EE1143E1C413479008ACE67 /* Main.storyboard */; };
@@ -46,6 +49,12 @@
 		3E26FC201C53FF2500B56A91 /* PFTestUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTestUser.h; sourceTree = "<group>"; };
 		3E26FC211C53FF2600B56A91 /* PFTestUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTestUser.m; sourceTree = "<group>"; };
 		3E26FC231C54081700B56A91 /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
+		3E26FC261C57C9CC00B56A91 /* PFMatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMatchViewController.h; sourceTree = "<group>"; };
+		3E26FC271C57C9CC00B56A91 /* PFMatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMatchViewController.m; sourceTree = "<group>"; };
+		3E26FC291C57CE7D00B56A91 /* PFMatchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMatchesViewController.h; sourceTree = "<group>"; };
+		3E26FC2A1C57CE7D00B56A91 /* PFMatchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMatchesViewController.m; sourceTree = "<group>"; };
+		3E26FC2C1C57E00400B56A91 /* PFChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFChatViewController.h; sourceTree = "<group>"; };
+		3E26FC2D1C57E00400B56A91 /* PFChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFChatViewController.m; sourceTree = "<group>"; };
 		3EE1142F1C413478008ACE67 /* PFMatchedUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFMatchedUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE114331C413478008ACE67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3EE114351C413478008ACE67 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,6 +123,19 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		3E26FC251C57C9A200B56A91 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				3E26FC261C57C9CC00B56A91 /* PFMatchViewController.h */,
+				3E26FC271C57C9CC00B56A91 /* PFMatchViewController.m */,
+				3E26FC291C57CE7D00B56A91 /* PFMatchesViewController.h */,
+				3E26FC2A1C57CE7D00B56A91 /* PFMatchesViewController.m */,
+				3E26FC2C1C57E00400B56A91 /* PFChatViewController.h */,
+				3E26FC2D1C57E00400B56A91 /* PFChatViewController.m */,
+			);
+			name = Match;
+			sourceTree = "<group>";
+		};
 		3EE114261C413478008ACE67 = {
 			isa = PBXGroup;
 			children = (
@@ -147,8 +169,9 @@
 				3EFCBB041C4AD27900BC71AE /* Home */,
 				3EFCBB051C4B7C0E00BC71AE /* Settings */,
 				3E26FC1C1C53FE8600B56A91 /* CreateParseUser */,
-				3EE114411C413479008ACE67 /* Assets.xcassets */,
+				3E26FC251C57C9A200B56A91 /* Match */,
 				3EE114431C413479008ACE67 /* LaunchScreen.storyboard */,
+				3EE114411C413479008ACE67 /* Assets.xcassets */,
 				3EE114461C413479008ACE67 /* Info.plist */,
 				3EE114321C413478008ACE67 /* Supporting Files */,
 			);
@@ -392,12 +415,15 @@
 			files = (
 				3EFCBB031C4AD26900BC71AE /* PFHomeViewController.m in Sources */,
 				3EFCBB081C4B7C3600BC71AE /* PFSettingsViewController.m in Sources */,
+				3E26FC281C57C9CC00B56A91 /* PFMatchViewController.m in Sources */,
 				3EFCBB0E1C4C077600BC71AE /* PFProfileViewController.m in Sources */,
 				3EE114371C413478008ACE67 /* AppDelegate.m in Sources */,
 				3EE1146A1C413FE2008ACE67 /* PFLoginViewController.m in Sources */,
 				3EFCBB0B1C4B842000BC71AE /* PFEditProfileViewController.m in Sources */,
 				3EE114341C413478008ACE67 /* main.m in Sources */,
+				3E26FC2B1C57CE7D00B56A91 /* PFMatchesViewController.m in Sources */,
 				3E26FC221C53FF2600B56A91 /* PFTestUser.m in Sources */,
+				3E26FC2E1C57E00400B56A91 /* PFChatViewController.m in Sources */,
 				3EE1146D1C440A38008ACE67 /* PFConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

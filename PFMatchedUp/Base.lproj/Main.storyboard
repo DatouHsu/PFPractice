@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Eh6-z6-Ie7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Eh6-z6-Ie7">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -128,6 +128,8 @@
                         <outlet property="settingsBarButtonItem" destination="zyY-Vq-Ay0" id="grf-LM-jYq"/>
                         <outlet property="tagLineLabel" destination="zdF-ld-QOH" id="FDI-mC-cG8"/>
                         <segue destination="Qux-6J-2fq" kind="show" identifier="homeToProfileSegue" id="39T-yC-Pmd"/>
+                        <segue destination="xgi-n4-Bey" kind="show" identifier="homeToMatchSegue" id="JYL-T6-frZ"/>
+                        <segue destination="xcz-hf-Qjg" kind="show" identifier="homeToMatchesSegue" id="qUp-JF-6OJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyB-As-2ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -356,6 +358,123 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9S-gG-mwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2256.5" y="3.5"/>
+        </scene>
+        <!--Match View Controller-->
+        <scene sceneID="YOL-zw-ENs">
+            <objects>
+                <viewController id="xgi-n4-Bey" customClass="PFMatchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I5G-fN-qU9"/>
+                        <viewControllerLayoutGuide type="bottom" id="LAH-hy-maa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tCu-uJ-Kgl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UiD-TV-UXi">
+                                <rect key="frame" x="20" y="116" width="140" height="140"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uxZ-tr-j9D">
+                                <rect key="frame" x="215" y="116" width="140" height="140"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="It's Match!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcf-0k-Gep">
+                                <rect key="frame" x="147" y="323" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Im-Hz-QE0">
+                                <rect key="frame" x="20" y="381" width="77" height="30"/>
+                                <state key="normal" title="View Chats"/>
+                                <connections>
+                                    <action selector="viewChatsButtonPressed:" destination="xgi-n4-Bey" eventType="touchUpInside" id="FiX-VS-h9Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJX-qB-oU6">
+                                <rect key="frame" x="247" y="381" width="108" height="30"/>
+                                <state key="normal" title="Keep Searching"/>
+                                <connections>
+                                    <action selector="keepSearchingButtonPressed:" destination="xgi-n4-Bey" eventType="touchUpInside" id="jps-32-OvM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="currentUserImageView" destination="uxZ-tr-j9D" id="nIa-PP-9mh"/>
+                        <outlet property="keepSearchingButton" destination="ZJX-qB-oU6" id="aVT-82-gTS"/>
+                        <outlet property="matchedUserImageView" destination="UiD-TV-UXi" id="g8Q-1v-0tA"/>
+                        <outlet property="viewChatsButton" destination="1Im-Hz-QE0" id="pQ3-R5-6QA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="87C-M8-Nfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1662.5" y="794.5"/>
+        </scene>
+        <!--Matches View Controller-->
+        <scene sceneID="dc4-HR-Wel">
+            <objects>
+                <viewController id="xcz-hf-Qjg" customClass="PFMatchesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dw2-0G-PMq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="4aj-P6-rBv" detailTextLabel="Np6-f0-ZfB" style="IBUITableViewCellStyleSubtitle" id="LQs-Du-kVP">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LQs-Du-kVP" id="x2e-qf-Obg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4aj-P6-rBv">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Np6-f0-ZfB">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="dw2-0G-PMq" id="IsO-1t-57x"/>
+                        <segue destination="deo-5Q-4Cp" kind="show" identifier="matchesToChatSegue" id="QYg-8d-2rK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Hg-hM-eZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2256.5" y="794.5"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="6kl-EI-6v4">
+            <objects>
+                <viewController id="deo-5Q-4Cp" customClass="PFChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bbI-Uq-RAP"/>
+                        <viewControllerLayoutGuide type="bottom" id="tWC-tu-mr6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jvo-iT-IvF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jb0-Tf-w5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2853.5" y="794.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wyr-EN-Sf0">
