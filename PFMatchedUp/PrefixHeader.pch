@@ -18,4 +18,9 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <JSQMessagesViewController/JSQMessages.h>
 
+
+#define		COLOR_OUTGOING						HEXCOLOR(0x007AFFFF)
+#define		COLOR_INCOMING						HEXCOLOR(0xE6E5EAFF)
+
+
 #endif /* PrefixHeader_pch */
