@@ -54,6 +54,7 @@
     self.ActivityIndicator.hidden = NO;
     [self.ActivityIndicator startAnimating];
     
+    //跟Facebook request user information.
     NSArray *permissionsArray = @[@"user_about_me", @"user_relationships", @"user_birthday", @"user_location", @"user_relationship_details"];
     
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser * _Nullable user, NSError * _Nullable error) {
@@ -61,6 +62,7 @@
         [self.ActivityIndicator stopAnimating];
         self.ActivityIndicator.hidden = YES;
         
+        //確認FB是不是真的有回傳我們需要的User information.
         if (!user) {
             if (!error) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Log in Error" message:@"The Facebook login was canceled" preferredStyle:UIAlertControllerStyleAlert];
@@ -91,12 +93,15 @@
 - (void)updateUserInformation
 {
     if ([FBSDKAccessToken currentAccessToken]) {
+        
+        //Request to FB SDK for "me" information.
         [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields" : @"name,first_name,gender,birthday,location"}]
          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
              if (!error) {
+                 //因為我們知道result實際上不是id 所以就加上（... *）讓電腦可以直接判斷為NSDictionary
                  NSDictionary *userDictionary = (NSDictionary *)result;
                  
-                 //Create URL
+                 //Create URL 來抓取user大頭照
                  NSString *facebookID = userDictionary[@"id"];
                  NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
                  
@@ -111,6 +116,8 @@
                      userProfile[PFUserProfileFirstNameKey] = userDictionary[@"first_name"];
                  }
                  if (userDictionary[@"location"][@"name"]) {
+                     //[location]回傳的會是Dictionary, 要位止的話要再加[name]
+                     //NSLog(@"%@", userDictionary[@"location"]);
                      userProfile[PFUserProfileLocationKey] = userDictionary[@"location"][@"name"];
                  }
                  if (userDictionary[@"gender"]) {
@@ -135,7 +142,7 @@
                  if ([pictureURL absoluteString]) {
                      userProfile[PFUserProfilePictureURL] = [pictureURL absoluteString];
                  }
-                 
+                 //存到Parse, 會在Parse上看到一個欄位叫Profile
                  [[PFUser currentUser] setObject:userProfile forKey:PFUserProfileKey];
                  [[PFUser currentUser] saveInBackground];
                  
@@ -157,12 +164,13 @@
         NSLog(@"imageData was not found");
         return;
     }
-    
+    //儲存NSData is more efficiently to store raw image.
     PFFile *photoFile = [PFFile fileWithData:imageData];
     
     [photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             PFObject *photo = [PFObject objectWithClassName:PFPhotoClassKey];
+            //To set the photo who is belongs to.
             [photo setObject:[PFUser currentUser] forKey:PFPhotoUserKey];
             [photo setObject:photoFile forKey:PFPhotoPictureKey];
             [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

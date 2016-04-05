@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface PFConstants : NSObject
-
+//golbal constant
+//直到程式被關閉之前 以下的變數都會佔記憶體
 #pragma mark - User Profile
 
-extern NSString *const PFUserTagLineKey;
+extern NSString *const PFUserTagLineKey;//Set an immutabl pointer to a mutable string.
 
 extern NSString *const PFUserProfileKey;
 extern NSString *const PFUserProfileNameKey;

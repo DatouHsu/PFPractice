@@ -9,7 +9,7 @@
 #import "PFConstants.h"
 
 @implementation PFConstants
-
+//Set value to String
 #pragma mark - User Class
 
 NSString *const PFUserTagLineKey = @"tagLine";

@@ -111,6 +111,7 @@
     if ([self.photos count] > 0) {
         self.photo = self.photos[self.currentPhotoIndex];
         PFFile *file = self.photo[PFPhotoPictureKey];
+        NSLog(@"%@", file);
         [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
             if (!error) {
                 UIImage *image = [UIImage imageWithData:data];
@@ -122,7 +123,6 @@
     }
     
     //Fix like and dislike 會累計的問題.
-    
     PFQuery *queryForLike = [PFQuery queryWithClassName:PFActivityClassKey];
     [queryForLike whereKey:PFActivityTypeKey equalTo:PFActivityTypeLikeKey];
     [queryForLike whereKey:PFActivityPhotoKey equalTo:self.photo];
@@ -167,12 +167,13 @@
 
 - (void)updateView
 {
-    NSLog(@"%@", self.photo[@"user"][@"profile"]);
+    //NSLog(@"%@", self.photo[@"user"][@"profile"]);
     self.firstnameLabel.text = self.photo[@"user"][@"profile"][@"firstName"];
     self.ageLabel.text = [NSString stringWithFormat:@"%@", self.photo[@"user"][@"profile"][@"age"]];
     self.tagLineLabel.text = self.photo[@"user"][@"tagLine"];
 }
 
+//Loading next photo
 - (void)setupNextPhoto
 {
     if (self.currentPhotoIndex + 1 < self.photos.count) {
@@ -207,9 +208,8 @@
 }
 
 - (void)saveDislike
-
 {
-    
+    //New class on Parse.
     PFObject *dislikeActivity = [PFObject objectWithClassName:@"Activity"];
     
     [dislikeActivity setObject:@"dislike" forKey:@"type"];
@@ -234,6 +234,7 @@
     else if (self.isDislikedByCurrentUser) {
         for (PFObject *activity in self.activities)
         {
+            NSLog(@"%@", activity);
             [activity deleteInBackground];
         }
         [self.activities removeLastObject];
@@ -299,12 +300,10 @@
 }
 
 - (void)presentMatchesViewController
-
 {
     [self dismissViewControllerAnimated:NO completion:^{
         [self performSegueWithIdentifier:@"homeToMatchesSegue" sender:nil];
     }];
-    
 }
 
 

@@ -58,7 +58,7 @@
 
 - (IBAction)logoutButtonPressed:(UIButton *)sender {
     [PFUser logOut];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES]; //Back to loginViewController.
 }
 
 - (IBAction)editProfileButtonPressed:(UIButton *)sender {
